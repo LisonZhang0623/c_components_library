@@ -6,9 +6,9 @@
 #include <string.h>
 #include <malloc.h>
 
-vector_res_t vectorInit(Vector * vec, size_t elem_size)
+vector_res_t vectorInit(Vector *vec, size_t elem_size)
 {
-    if(vec == NULL || elem_size == 0)
+    if (vec == NULL || elem_size == 0)
     {
         return VEC_BAD_ARG;
     }
@@ -18,9 +18,9 @@ vector_res_t vectorInit(Vector * vec, size_t elem_size)
     return VEC_OK;
 }
 
-vector_res_t vectorFree(Vector * vec)
+vector_res_t vectorFree(Vector *vec)
 {
-    if(vec == NULL)
+    if (vec == NULL)
     {
         return VEC_BAD_ARG;
     }
@@ -30,20 +30,20 @@ vector_res_t vectorFree(Vector * vec)
     return VEC_OK;
 }
 
-vector_res_t vectorPushBack(Vector * vec, const void * elem)
+vector_res_t vectorPushBack(Vector *vec, const void *elem)
 {
-    if(vec == NULL || elem == NULL || vec->elem_size == 0) 
+    if (vec == NULL || elem == NULL || vec->elem_size == 0)
     {
         return VEC_BAD_ARG;
     }
 
-    //扩容
-    if(vec->capacity == vec->size)
+    // 扩容
+    if (vec->capacity == vec->size)
     {
         size_t new_cap = vec->capacity == 0 ? 4 : vec->capacity * 2;
-        void * new_data = 
-            realloc(vec->data,new_cap * vec->elem_size);
-        if(new_data == NULL)
+        void *new_data =
+            realloc(vec->data, new_cap * vec->elem_size);
+        if (new_data == NULL)
         {
             return VEC_NO_MEMORY;
         }
@@ -51,25 +51,25 @@ vector_res_t vectorPushBack(Vector * vec, const void * elem)
         vec->capacity = new_cap;
     }
 
-    void * target = (char *)vec->data + vec->size * vec->elem_size;
-    vec->size ++;
-    memcpy(target,elem,vec->elem_size);
+    void *target = (char *)vec->data + vec->size * vec->elem_size;
+    vec->size++;
+    memcpy(target, elem, vec->elem_size);
     return VEC_OK;
 }
 
 vector_res_t vectorPopBack(Vector *vec)
 {
-    if(vec == NULL || vec->elem_size == 0)
+    if (vec == NULL || vec->elem_size == 0)
     {
         return VEC_BAD_ARG;
     }
-    
+
     if (vec->size == 0)
     {
         return VEC_BAD_ARG;
     }
 
-    vec->size --;
+    vec->size--;
     return VEC_OK;
 }
 
@@ -134,14 +134,14 @@ static void _vectorSwap(Vector *vec, size_t i, size_t j)
     free(tmp);
 }
 
-static void _quickSort(Vector * vec, int l, int r, vectorCompareFunc cmp)
+static void _quickSort(Vector *vec, int l, int r, vectorCompareFunc cmp)
 {
     if (vec == NULL || cmp == NULL || l >= r)
     {
         return;
     }
 
-    //取中间值
+    // 取中间值
     void *pivot = malloc(vec->elem_size);
     if (pivot == NULL)
     {
@@ -150,23 +150,27 @@ static void _quickSort(Vector * vec, int l, int r, vectorCompareFunc cmp)
     memcpy(pivot, vectorAt(vec, (size_t)((l + r) >> 1)), vec->elem_size);
 
     int i = l - 1, j = r + 1;
-    while(i < j)
+    while (i < j)
     {
-        do i++; while (cmp(vectorAt(vec, (size_t)i), pivot));
-        do j--; while (cmp(pivot, vectorAt(vec, (size_t)j)));
-        if(i < j)
+        do
+            i++;
+        while (cmp(vectorAt(vec, (size_t)i), pivot));
+        do
+            j--;
+        while (cmp(pivot, vectorAt(vec, (size_t)j)));
+        if (i < j)
         {
-            _vectorSwap(vec,(size_t)i,(size_t)j);
+            _vectorSwap(vec, (size_t)i, (size_t)j);
         }
     }
     free(pivot);
-    _quickSort(vec,l,j,cmp);
-    _quickSort(vec,j+1,r,cmp);
+    _quickSort(vec, l, j, cmp);
+    _quickSort(vec, j + 1, r, cmp);
 }
 
-vector_res_t vectorSort(Vector * vec,vectorCompareFunc cmp)
+vector_res_t vectorSort(Vector *vec, vectorCompareFunc cmp)
 {
-    if(vec->size <= 1)
+    if (vec->size <= 1)
     {
         return VEC_OK;
     }
@@ -198,7 +202,6 @@ int vectorCharCmp(const void *a, const void *b)
     char y = *(const char *)b;
     return x < y;
 }
-
 
 void __vectorTest001()
 {
