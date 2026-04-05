@@ -1,4 +1,5 @@
 #include "Vector.h"
+#include <stdio.h>
 
 void __vectorTest001()
 {
