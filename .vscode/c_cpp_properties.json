@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            // "includePath": [
+            //     "${workspaceFolder}/**",
+            //     "${workspaceFolder}/components/**",
+            //     "${workspaceFolder}/components/fileHelper/include",
+            //     "${workspaceFolder}/components/jsonObject/include"
+            // ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}
