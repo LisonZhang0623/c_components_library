@@ -12,6 +12,8 @@ include_directories(
 )
 
 add_subdirectory(components/Array)
+add_subdirectory(components/Vector)
+
 # add_subdirectory(components/jsonParser)
 
 # 主程序
@@ -22,5 +24,6 @@ file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
 # 链接两个模块库
 target_link_libraries(${PROJECT_NAME}
     Array
+    Vector
     # jsonParser
 )
