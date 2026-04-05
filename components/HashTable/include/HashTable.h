@@ -32,7 +32,9 @@ void hashTableDestroy(HashTable *ht);
 hash_table_res_t hashTablePut(HashTable *ht, const char *key, const void *value, size_t value_size);
 void *hashTableGet(const HashTable *ht, const char *key);
 hash_table_res_t hashTableRemove(HashTable *ht, const char *key);
-int hashTableContains(const HashTable *ht, const char *key);
 
+int hashTableContains(const HashTable *ht, const char *key);
+size_t hashTableSize(const HashTable *ht);
+int hashTableEmpty(const HashTable *ht);
 
 #endif

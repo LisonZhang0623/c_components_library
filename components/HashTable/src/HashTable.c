@@ -213,10 +213,51 @@ void *hashTableGet(const HashTable *ht, const char *key)
 
 hash_table_res_t hashTableRemove(HashTable *ht, const char *key)
 {
-    
+    if (ht == NULL || key == NULL || ht->capacity == 0) 
+    {
+        return HT_BAD_ARG;
+    }
+
+    size_t index = htHash(key) % ht->capacity;
+    HashNode * node = ht->buckets[index];
+    HashNode * prev = NULL;
+    while(node != NULL)
+    {
+        if(strcmp(node->key,key) == 0)
+        {
+            if(prev == NULL)
+            {
+                ht->buckets[index] = node->next;
+            }
+            else 
+            {
+                prev->next = node->next;
+            }
+            hashNodeDestroy(node);
+            ht->size --;
+            return HT_OK;
+        }
+        prev = node;
+        node = node->next;
+    }
+    return HT_OK;
 }
 
 int hashTableContains(const HashTable *ht, const char *key)
 {
     return hashTableGet(ht,key) != NULL;
+}
+
+size_t hashTableSize(const HashTable *ht)
+{
+    if(ht == NULL)
+    {
+        return 0;
+    }
+    return ht->size;
+}
+
+int hashTableEmpty(const HashTable *ht)
+{
+    return hashTableSize(ht) == 0;
 }
