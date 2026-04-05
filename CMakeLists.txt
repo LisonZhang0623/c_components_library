@@ -13,6 +13,7 @@ include_directories(
 
 add_subdirectory(components/Array)
 add_subdirectory(components/Vector)
+add_subdirectory(components/HashTable)
 
 # add_subdirectory(components/jsonParser)
 
@@ -25,5 +26,6 @@ add_executable(${PROJECT_NAME} main.c)
 target_link_libraries(${PROJECT_NAME}
     Array
     Vector
+    HashTable
     # jsonParser
 )

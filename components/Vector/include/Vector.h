@@ -48,7 +48,7 @@ int vectorIntCmp(const void *a, const void *b);
 int vectorDoubleCmp(const void *a, const void *b);
 int vectorCharCmp(const void *a, const void *b);
 
-void __vectorTest001();
-void __vectorTest002();
+// void __vectorTest001();
+// void __vectorTest002();
 
 #endif

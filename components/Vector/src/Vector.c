@@ -203,74 +203,74 @@ int vectorCharCmp(const void *a, const void *b)
     return x < y;
 }
 
-void __vectorTest001()
-{
-    Vector vec;
-    vectorInit(&vec, sizeof(int));
+// void __vectorTest001()
+// {
+//     Vector vec;
+//     vectorInit(&vec, sizeof(int));
 
-    for (int i = 1; i <= 5; i++)
-    {
-        vectorPushBack(&vec, &i);
-    }
+//     for (int i = 1; i <= 5; i++)
+//     {
+//         vectorPushBack(&vec, &i);
+//     }
 
-    printf("size before pop: %zu\n", vec.size);
+//     printf("size before pop: %zu\n", vec.size);
 
-    vectorPopBack(&vec);
+//     vectorPopBack(&vec);
 
-    printf("size after pop: %zu\n", vec.size);
+//     printf("size after pop: %zu\n", vec.size);
 
-    for (size_t i = 0; i < vec.size; i++)
-    {
-        printf("%d ", *(int *)vectorAt(&vec, i));
-    }
-    printf("\n");
+//     for (size_t i = 0; i < vec.size; i++)
+//     {
+//         printf("%d ", *(int *)vectorAt(&vec, i));
+//     }
+//     printf("\n");
 
-    vectorClear(&vec);
-    printf("after clear, empty = %d\n", vectorEmpty(&vec));
+//     vectorClear(&vec);
+//     printf("after clear, empty = %d\n", vectorEmpty(&vec));
 
-    vectorFree(&vec);
-}
+//     vectorFree(&vec);
+// }
 
-static int intCmp(const void *a, const void *b)
-{
-    int x = *(const int *)a;
-    int y = *(const int *)b;
-    return x < y;
-}
+// static int intCmp(const void *a, const void *b)
+// {
+//     int x = *(const int *)a;
+//     int y = *(const int *)b;
+//     return x < y;
+// }
 
-void __vectorTest002(void)
-{
-    Vector vec;
-    if (vectorInit(&vec, sizeof(int)) != VEC_OK)
-    {
-        printf("vectorInit failed\n");
-        return;
-    }
+// void __vectorTest002(void)
+// {
+//     Vector vec;
+//     if (vectorInit(&vec, sizeof(int)) != VEC_OK)
+//     {
+//         printf("vectorInit failed\n");
+//         return;
+//     }
 
-    int arr[] = {5, 2, 9, 1, 7, 3, 8, 4, 6};
+//     int arr[] = {5, 2, 9, 1, 7, 3, 8, 4, 6};
 
-    for (int i = 0; i < 9; i++)
-    {
-        if (vectorPushBack(&vec, &arr[i]) != VEC_OK)
-        {
-            printf("vectorPushBack failed\n");
-            vectorFree(&vec);
-            return;
-        }
-    }
+//     for (int i = 0; i < 9; i++)
+//     {
+//         if (vectorPushBack(&vec, &arr[i]) != VEC_OK)
+//         {
+//             printf("vectorPushBack failed\n");
+//             vectorFree(&vec);
+//             return;
+//         }
+//     }
 
-    for (size_t i = 0; i < vec.size; i++)
-    {
-        printf("%d ", *(int *)vectorAt(&vec, i));
-    }
-    printf("\n");
-    vectorSort(&vec, intCmp);
+//     for (size_t i = 0; i < vec.size; i++)
+//     {
+//         printf("%d ", *(int *)vectorAt(&vec, i));
+//     }
+//     printf("\n");
+//     vectorSort(&vec, intCmp);
 
-    for (size_t i = 0; i < vec.size; i++)
-    {
-        printf("%d ", *(int *)vectorAt(&vec, i));
-    }
-    printf("\n");
+//     for (size_t i = 0; i < vec.size; i++)
+//     {
+//         printf("%d ", *(int *)vectorAt(&vec, i));
+//     }
+//     printf("\n");
 
-    vectorFree(&vec);
-}
+//     vectorFree(&vec);
+// }
