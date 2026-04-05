@@ -19,7 +19,7 @@ add_subdirectory(components/Vector)
 # 主程序
 add_executable(${PROJECT_NAME} main.c)
 
-file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+# file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
 
 # 链接两个模块库
 target_link_libraries(${PROJECT_NAME}
